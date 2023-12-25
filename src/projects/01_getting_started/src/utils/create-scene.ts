@@ -1,4 +1,8 @@
 import * as THREE from 'three'
+import {
+  MAX_HEIGHT_SECTIONS_SCENE,
+  MAX_WIDTH_SECTIONS_SCENE
+} from '../consts/sections'
 
 export class Scene {
   readonly scene: THREE.Scene
@@ -15,28 +19,23 @@ export class Scene {
       this.object.rotation.y += 0.01
     }
 
+    const canvas = document.querySelector('#c') as HTMLCanvasElement
+    // The renderer is what renders the scene
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, canvas }) // WebGL is the most popular renderer
+    this.renderer.setSize(MAX_WIDTH_SECTIONS_SCENE, MAX_HEIGHT_SECTIONS_SCENE) // Set the size of the renderer
+
     // Create the variables needed for the scene, camera, and renderer
     this.scene = new THREE.Scene() // The scene is where you place objects
     this.camera = new THREE.PerspectiveCamera( // The camera is what you view the scene through
       75, // Field of view -> How much of the scene is visible
-      window.innerWidth / window.innerHeight, // Aspect ratio
+      2, // Aspect ratio
       0.1, // Near clipping plane -> Anything closer than this will not be rendered
-      1000 // Far clipping plane -> Anything further than this will not be rendered
+      5 // Far clipping plane -> Anything further than this will not be rendered
     )
-
-    // The renderer is what renders the scene
-    this.renderer = new THREE.WebGLRenderer() // WebGL is the most popular renderer
-    this.renderer.setSize(window.innerWidth, window.innerHeight) // Set the size of the renderer
-    this.renderer.setSize(window.innerWidth / 2, window.innerHeight / 2, false) // Set the resolution of the renderer
-    document
-      .querySelector('#create-scene')
-      ?.appendChild(this.renderer.domElement) // Add the renderer to the DOM
-
-    this.camera.position.z = 5 // Move the camera back so we can see the cube
+    this.camera.position.z = 2 // Move the camera back so we can see the cube
   }
 
-  add (object: THREE.Mesh): void {
-    this.object = object
+  add (object: THREE.Mesh | THREE.DirectionalLight): void {
     this.scene.add(object)
   }
 
@@ -45,8 +44,9 @@ export class Scene {
   }
 
   animate (): void {
-    requestAnimationFrame(this.animate.bind(this)) // Call the animate function again
     this.animations()
     this.render()
+    // requestAnimationFrame(this.animate.bind(this)) // Call the animate function again
+    requestAnimationFrame(this.animate.bind(this)) // Call the animate function again
   }
 }

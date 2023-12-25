@@ -1,4 +1,8 @@
 import * as THREE from 'three'
+import {
+  MAX_HEIGHT_SECTIONS_SCENE,
+  MAX_WIDTH_SECTIONS_SCENE
+} from '../consts/sections'
 
 export class DrawLine {
   // Variables
@@ -18,8 +22,12 @@ export class DrawLine {
     // Create the variables needed for the scene, camera, and rendererF
     this.renderer = new THREE.WebGLRenderer()
     this.scene = new THREE.Scene()
-    this.renderer.setSize(window.innerWidth, window.innerHeight) // size
-    this.renderer.setSize(window.innerWidth / 4, window.innerHeight, false) // resolution
+    this.renderer.setSize(MAX_WIDTH_SECTIONS_SCENE, MAX_HEIGHT_SECTIONS_SCENE) // size
+    this.renderer.setSize(
+      MAX_WIDTH_SECTIONS_SCENE / 4,
+      MAX_HEIGHT_SECTIONS_SCENE,
+      false
+    ) // resolution
     document.querySelector('#draw-lines')?.appendChild(this.renderer.domElement)
     this.camera = new THREE.PerspectiveCamera(
       45,

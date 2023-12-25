@@ -3,6 +3,10 @@ import {
   CSS3DObject,
   CSS3DRenderer
 } from 'three/addons/renderers/CSS3DRenderer.js'
+import {
+  MAX_HEIGHT_SECTIONS_SCENE,
+  MAX_WIDTH_SECTIONS_SCENE
+} from '../consts/sections'
 
 export class CreateText {
   // Variables
@@ -22,7 +26,7 @@ export class CreateText {
     // Create the variables needed for the scene, camera, and rendererF
     this.renderer = new CSS3DRenderer()
     this.scene = new THREE.Scene()
-    this.renderer.setSize(window.innerWidth, window.innerHeight) // size
+    this.renderer.setSize(MAX_WIDTH_SECTIONS_SCENE, MAX_HEIGHT_SECTIONS_SCENE) // size
     document
       .querySelector('#create-text')
       ?.appendChild(this.renderer.domElement)
