@@ -85,9 +85,9 @@ line.geometry.setDrawRange(0, 10) // If you want to change the number of points 
 const positionAttribute = lineUpdate.geometry.getAttribute('position') // Get the position attribute
 positionAttribute.needsUpdate = true // required after the first render
 
-let x = 0, // Create variables for the x, y, and z coordinates
-  y = 0,
-  z = 0
+let x = 0 // Create variables for the x, y, and z coordinates
+let y = 0
+let z = 0
 
 for (let i = 0; i < positionAttribute.count; i++) {
   // Set the coordinates of the points
