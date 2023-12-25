@@ -15,12 +15,14 @@ createScene.animate() // Animate the cube
 
 // Create a line
 
-const drawLine = new DrawLine({ cameraX: 0, cameraY: 0, cameraZ: 100 }) // Create a scene
+const drawLine = new DrawLine({ cameraX: 0, cameraY: 0, cameraZ: 50 }) // Create a scene
 const materialLine = new THREE.LineBasicMaterial({ color: 0x0000ff }) // Create a material
 const points = [] // Create an array of points
-points.push(new THREE.Vector3(-10, 0, 0))
-points.push(new THREE.Vector3(0, 10, 0))
-points.push(new THREE.Vector3(10, 0, 0))
+points.push(new THREE.Vector3(-10, 0, 5))
+points.push(new THREE.Vector3(0, 10, 5))
+points.push(new THREE.Vector3(10, 0, 5))
+points.push(new THREE.Vector3(0, -10, 5))
+points.push(new THREE.Vector3(-10, 0, 5))
 const geometryLine = new THREE.BufferGeometry().setFromPoints(points) // Create a geometry from the points
 const line = new THREE.Line(geometryLine, materialLine) // Create a line using the geometry and material
 drawLine.add(line) // Add the line to the scene
