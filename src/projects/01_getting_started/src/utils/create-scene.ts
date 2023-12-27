@@ -7,7 +7,7 @@ import {
 export class Scene {
   readonly scene: THREE.Scene
   readonly camera: THREE.PerspectiveCamera
-  readonly renderer: THREE.WebGLRenderer
+  readonly renderer?: THREE.WebGLRenderer
   object: THREE.Mesh
   animations: () => void
 
@@ -19,11 +19,12 @@ export class Scene {
       this.object.rotation.y += 0.01
     }
 
-    const canvas = document.querySelector('#c') as HTMLCanvasElement
+    const canvas = document.querySelector('#c')
     // The renderer is what renders the scene
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, canvas }) // WebGL is the most popular renderer
-    this.renderer.setSize(MAX_WIDTH_SECTIONS_SCENE, MAX_HEIGHT_SECTIONS_SCENE) // Set the size of the renderer
-
+    if (canvas != null) {
+      this.renderer = new THREE.WebGLRenderer({ antialias: true, canvas }) // WebGL is the most popular renderer
+      this.renderer.setSize(MAX_WIDTH_SECTIONS_SCENE, MAX_HEIGHT_SECTIONS_SCENE) // Set the size of the renderer
+    }
     // Create the variables needed for the scene, camera, and renderer
     this.scene = new THREE.Scene() // The scene is where you place objects
     this.camera = new THREE.PerspectiveCamera( // The camera is what you view the scene through
@@ -40,7 +41,7 @@ export class Scene {
   }
 
   render (): void {
-    this.renderer.render(this.scene, this.camera)
+    this.renderer?.render(this.scene, this.camera)
   }
 
   animate (): void {

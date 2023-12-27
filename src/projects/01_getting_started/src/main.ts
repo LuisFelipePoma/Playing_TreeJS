@@ -5,10 +5,11 @@ import { DrawLine } from './utils/draw-lines.ts'
 import { CreateText } from './utils/create-text.ts'
 import { UpdateResource } from './utils/update-resources.ts'
 import { createListInfo } from './dom/structure-list.ts'
+import { generateCodeCreateScene } from './dom/code-create-scene.ts'
 
 // <------------ Generate DOM Info --------------->
 createListInfo()
-
+generateCodeCreateScene()
 // <------------ Create a scene --------------->
 
 const createScene = new Scene() // Create a scene
